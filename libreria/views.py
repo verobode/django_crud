@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Libro
+from .form import LibroForm
 
 #La función envía una solicitud y responde con un texto
 def inicio(request):
@@ -15,8 +16,13 @@ def libros(request):
     print(libros)
     return render(request, 'libros/index.html', {'libros': libros})
 
+#Identifica los elementos que nos están enviando a través del formulario e igualarlo en el mismo
 def crear(request):
-    return render(request, 'libros/crear.html')
+    formulario = LibroForm(request.POST or None, request.FILES or None) 
+    if formulario.is_valid():
+        formulario.save()
+        return redirect('libros')
+    return render(request, 'libros/crear.html', {'formulario':formulario})
 
 def editar(request):
     return render(request, 'libros/editar.html')
