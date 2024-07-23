@@ -1,0 +1,19 @@
+# .env file
+.env
+
+# Otros archivos y directorios
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+env/
+venv/
+*.log
+db.sqlite3
+**/settings.py
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
