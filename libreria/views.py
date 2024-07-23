@@ -27,3 +27,8 @@ def crear(request):
 def editar(request):
     return render(request, 'libros/editar.html')
 
+def eliminar(request, id):
+    libro = Libro.objects.get(id=id)
+    libro.delete()
+    return redirect('libros')
+
